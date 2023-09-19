@@ -2,7 +2,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include "Game.hpp"
+#include "Game.h"
 
 class NewGame : public Game
 {

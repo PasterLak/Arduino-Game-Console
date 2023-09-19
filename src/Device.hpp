@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Button.hpp>
-#include <Joystick.hpp>
+#include <input/Button.hpp>
+#include "input/Joystick.h"
 #include <Speaker.hpp>
 #include "Adafruit_I2CDevice.h"
 #include <Wire.h>

@@ -1,9 +1,11 @@
+
 #pragma once
 
 #include <Arduino.h>
 #include "Device.hpp"
-#include "Global.h"
-#include "Vector2Byte.hpp"
+#include "Time.h"
+#include "Vector2Byte.h"
+
 
 class Game
 {

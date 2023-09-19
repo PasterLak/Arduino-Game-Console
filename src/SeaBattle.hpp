@@ -1,14 +1,13 @@
 #pragma once
 
 #include <Arduino.h>
-#include "Game.hpp"
+#include "Game.h"
 
-#include "Ship.hpp"
-#include "Submarine.hpp"
-#include "Bomb.hpp"
-#include "Rocket.hpp"
+#include "Ship.h"
+#include "Submarine.h"
+#include "Bomb.h"
+#include "Rocket.h"
 #include "Sprites.hpp"
-
 
 #define MAX_BOMBS 10
 #define MAX_SUBMARINES 6
@@ -16,13 +15,11 @@
 class SeaBattle : public Game
 {
 private:
-    
 public:
-
     int score = 0;
     Ship ship;
     Bomb bombs[MAX_BOMBS];
-    Submarine submarines[MAX_SUBMARINES]{{(int8_t)1}, {(int8_t)-1}, {(int8_t)1}, {(int8_t)-1}, {(int8_t)1},  {(int8_t)1}};
+    Submarine submarines[MAX_SUBMARINES]{{(int8_t)1}, {(int8_t)-1}, {(int8_t)1}, {(int8_t)-1}, {(int8_t)1}, {(int8_t)1}};
     Rocket rockets[MAX_BOMBS];
 
     int timeToSpawnRocket = 200;
@@ -35,11 +32,9 @@ public:
 
     void awake() override
     {
-
     }
     void start() override
     {
-        
     }
 
     void update() override
@@ -50,39 +45,54 @@ public:
         updateInput();
         ship.update();
         drawSprites();
-
         drawGUI();
 
+        updateTimers();
+    }
+
+    void updateTimers()
+    {
+        updateSpawnRocketTimer();
+        updateSpawnSubmarineTimer();
+    }
+
+    void updateSpawnRocketTimer()
+    {
         if (timeToSpawnRocket > 0)
         {
             timeToSpawnRocket -= deltaTime;
-
             if (timeToSpawnRocket < 0)
             {
                 timeToSpawnRocket = 0;
             }
         }
+    }
 
+    void updateSpawnSubmarineTimer()
+    {
         if (timeToSpawnSubmarine > 0)
         {
             timeToSpawnSubmarine -= deltaTime;
-
             if (timeToSpawnSubmarine <= 0)
             {
                 timeToSpawnSubmarine = 0;
             }
         }
-
-        if (timeToSpawnSubmarine == 0)
+        else
         {
-            for (byte i = 0; i < MAX_SUBMARINES; i++)
+            spawnSubmarine();
+        }
+    }
+
+    void spawnSubmarine()
+    {
+        for (byte i = 0; i < MAX_SUBMARINES; i++)
+        {
+            if (!submarines[i].isActive())
             {
-                if (submarines[i].isActive() == false)
-                {
-                    submarines[i].create();
-                    timeToSpawnSubmarine = 500 + random(0, 7000);
-                    break;
-                }
+                submarines[i].create();
+                timeToSpawnSubmarine = 500 + random(0, 7000);
+                break;
             }
         }
     }
@@ -91,81 +101,118 @@ public:
     {
         if (Device::joystick.isMovedDown() || Device::button.isDown())
         {
-            if (ship.canShot)
-            {
-                for (byte i = 0; i < MAX_BOMBS; i++)
-                {
-                    if (bombs[i].isActive == false)
-                    {
-                        bombs[i].create(ship.position.x);
-                        ship.shot();
+            shootBomb();
+        }
 
-                        break;
-                    }
+        moveShipWithJoystick();
+        wrapShipPosition();
+    }
+
+    void shootBomb()
+    {
+        if (ship.canShot())
+        {
+            for (byte i = 0; i < MAX_BOMBS; i++)
+            {
+                if (bombs[i].isActive == false)
+                {
+                    bombs[i].create(ship.getPositionX());
+                    ship.shot();
+                    break;
                 }
             }
         }
+    }
 
-        if (Device::button.isDown())
-        {
-        }
-
+    void moveShipWithJoystick()
+    {
         if (Device::joystick.x > 700)
-            ship.position.x = (uint8_t)(ship.position.x - ship.getSpeed());
-        if (Device::joystick.x < 300)
-            ship.position.x = (uint8_t)(ship.position.x + ship.getSpeed());
+        {
+            ship.setPositionX(ship.getPositionX() - ship.getSpeed());
+        }
+        else if (Device::joystick.x < 300)
+        {
+            ship.setPositionX(ship.getPositionX() + ship.getSpeed());
+        }
+    }
 
-        if (ship.position.x <= 0)
-            ship.position.x = 128;
-        else if (ship.position.x > 128)
-            ship.position.x = 0;
+    void wrapShipPosition()
+    {
+        if (ship.getPositionX() <= 0)
+        {
+            ship.setPositionX(128);
+        }
+        else if (ship.getPositionX() > 128)
+        {
+            ship.setPositionX(0);
+        }
     }
 
     void drawSprites()
     {
-
         Device::display.clearDisplay();
-
         Device::display.drawBitmap(0, 0, sBackground, 128, 64, WHITE);
 
-        Device::display.setCursor(ship.position.x, ship.position.y);
+        drawShip();
+        drawRockets();
+        drawBombs();
+        drawSubmarines();
+    }
 
-        Device::display.drawBitmap(ship.position.x - 16, 5, sShip, 32, 12, WHITE);
+    void drawShip()
+    {
+        Device::display.setCursor(ship.getPositionX(), ship.getPositionY());
+        Device::display.drawBitmap(ship.getPositionX() - 16, 5, sShip, 32, 12, WHITE);
+    }
 
+    void drawRockets()
+    {
         for (byte i = 0; i < MAX_BOMBS; i++)
         {
             if (rockets[i].isActive == true)
             {
+                int dis = Vector2Byte::distance(ship.getPosition(), rockets[i].getPosition());
 
-                int dis = Vector2Byte::distance(ship.position, rockets[i].position);
-
-                if (dis < 14 && rockets[i].position.y > 10)
+                if (dis < 14 && rockets[i].getPositionY() > 10)
                 {
-                    Device::display.drawBitmap(rockets[i].position.x - 4, rockets[i].position.x - 2, sExplosion, 8, 8, WHITE);
+                    Device::display.drawBitmap(rockets[i].getPositionX() - 4, rockets[i].getPositionX() - 2, sExplosion, 8, 8, WHITE);
                     rockets[i].destroy();
                     setDamage();
                 }
                 else
                 {
-                    if (rockets[i].position.y <= 17 && rockets[i].position.y > 15)
-                        Device::display.drawBitmap(rockets[i].position.x - 2, 10, sSplashSmall, 4, 4, WHITE);
-
-                    if (rockets[i].position.y <= 15 && rockets[i].position.y > 11)
-                        Device::display.drawBitmap(rockets[i].position.x - 4, 6, sSplashMedium, 8, 8, WHITE);
-
-                    if (rockets[i].position.y <= 11 && rockets[i].position.y > 4)
-                        Device::display.drawBitmap(rockets[i].position.x - 4, 6, sSplashBig, 8, 8, WHITE);
-
-                    if (rockets[i].position.y <= 4 && rockets[i].position.y > 2)
-                        Device::display.drawBitmap(rockets[i].position.x - 4, 6, sSplashMedium, 8, 8, WHITE);
-
-                    if (rockets[i].position.y <= 2 && rockets[i].position.y > 0)
-                        Device::display.drawBitmap(rockets[i].position.x - 2, 10, sSplashSmall, 4, 4, WHITE);
-
+                    int rocketX = rockets[i].getPositionX();
+                    int rocketY = rockets[i].getPositionY();
+                    drawRocketSplash(rocketX, rocketY);
                     rockets[i].update();
-                    Device::display.drawBitmap(rockets[i].position.x - 1, rockets[i].position.y - 4, sRocket, 3, 8, WHITE);
+                    Device::display.drawBitmap(rocketX - 1, rocketY - 4, sRocket, 3, 8, WHITE);
                 }
             }
+        }
+    }
+
+    void drawRocketSplash(int x, int y)
+    {
+        if (y <= 17 && y > 15)
+            Device::display.drawBitmap(x - 2, 10, sSplashSmall, 4, 4, WHITE);
+
+        if (y <= 15 && y > 11)
+            Device::display.drawBitmap(x - 4, 6, sSplashMedium, 8, 8, WHITE);
+
+        if (y <= 11 && y > 4)
+            Device::display.drawBitmap(x - 4, 6, sSplashBig, 8, 8, WHITE);
+
+        if (y <= 4 && y > 2)
+            Device::display.drawBitmap(x - 4, 6, sSplashMedium, 8, 8, WHITE);
+
+        if (y <= 2 && y > 0)
+            Device::display.drawBitmap(x - 2, 10, sSplashSmall, 4, 4, WHITE);
+    }
+
+    void drawBombs()
+    {
+        for (byte i = 0; i < MAX_BOMBS; i++)
+        {
             if (bombs[i].isActive == true)
             {
                 bombs[i].update();
@@ -175,74 +222,95 @@ public:
                     Device::display.drawBitmap(bombs[i].position.x - 4, bombs[i].position.y - 4, sExplosion, 8, 8, WHITE);
                     bombs[i].destroy();
                 }
-
-                if (bombs[i].isActive)
+                else
                 {
-                    Device::display.drawBitmap(bombs[i].position.x - 2, bombs[i].position.y, sBomb, 4, 4, WHITE);
-
-                    for (byte j = 0; j < MAX_SUBMARINES; j++)
-                    {
-                        if (submarines[j].isActive())
-                        {
-                            byte dis = Vector2Byte::distance(submarines[j].position, bombs[i].position);
-
-                            if (dis < 6)
-                            {
-                                Device::display.drawBitmap(bombs[i].position.x - 4, bombs[i].position.y - 2, sExplosion, 8, 8, WHITE);
-                                submarines[j].destroy();
-                                score++;
-                                bombs[i].destroy();
-                            }
-                        }
-                    }
-                }
-                if (bombs[i].isActive)
-                {
-                    for (byte j = 0; j < MAX_BOMBS; j++)
-                    {
-                        if (rockets[j].isActive)
-                        {
-                            byte dis = Vector2Byte::distance(bombs[i].position, rockets[j].position);
-
-                            if (dis < 6)
-                            {
-                                Device::display.drawBitmap(bombs[i].position.x - 4, bombs[i].position.y - 2, sExplosion, 8, 8, WHITE);
-                                rockets[j].destroy();
-                                bombs[i].destroy();
-                            }
-                        }
-                    }
+                    drawBomb(bombs[i]);
+                    checkBombCollision(bombs[i]);
+                    checkRocketCollision(bombs[i]);
                 }
             }
         }
+    }
+
+    void drawBomb(Bomb &bomb)
+    {
+        Device::display.drawBitmap(bomb.position.x - 2, bomb.position.y, sBomb, 4, 4, WHITE);
+    }
+
+    void checkBombCollision(Bomb &bomb)
+    {
+        for (byte j = 0; j < MAX_SUBMARINES; j++)
+        {
+            if (submarines[j].isActive())
+            {
+                byte dis = Vector2Byte::distance(submarines[j].position, bomb.position);
+
+                if (dis < 6)
+                {
+                    Device::display.drawBitmap(bomb.position.x - 4, bomb.position.y - 2, sExplosion, 8, 8, WHITE);
+                    submarines[j].destroy();
+                    score++;
+                    bomb.destroy();
+                }
+            }
+        }
+    }
+
+    void checkRocketCollision(Bomb &bomb)
+    {
+        for (byte j = 0; j < MAX_BOMBS; j++)
+        {
+            if (rockets[j].isActive)
+            {
+                byte dis = Vector2Byte::distance(bomb.position, rockets[j].getPosition());
+
+                if (dis < 6)
+                {
+                    Device::display.drawBitmap(bomb.position.x - 4, bomb.position.y - 2, sExplosion, 8, 8, WHITE);
+                    rockets[j].destroy();
+                    bomb.destroy();
+                }
+            }
+        }
+    }
+
+    void drawSubmarines()
+    {
         for (byte i = 0; i < MAX_SUBMARINES; i++)
         {
             if (submarines[i].isActive() == true)
             {
                 submarines[i].update();
+                drawSubmarine(submarines[i]);
+                spawnRocketFromSubmarine(submarines[i]);
+            }
+        }
+    }
 
-                if (submarines[i].isActive())
+    void drawSubmarine(Submarine &submarine)
+    {
+        if (submarine.direction == 1)
+        {
+            Device::display.drawBitmap(submarine.position.x - 6, submarine.position.y, sSubmarineRight, 12, 8, WHITE);
+        }
+        else
+        {
+            Device::display.drawBitmap(submarine.position.x - 6, submarine.position.y, sSubmarineLeft, 12, 8, WHITE);
+        }
+    }
+
+    void spawnRocketFromSubmarine(Submarine &submarine)
+    {
+        if (timeToSpawnRocket == 0)
+        {
+            for (byte j = 0; j < MAX_BOMBS; j++)
+            {
+                if (rockets[j].isActive == false)
                 {
-                    if (submarines[i].direction == 1)
-                    {
-                        Device::display.drawBitmap(submarines[i].position.x - 6, submarines[i].position.y, sSubmarineRight, 12, 8, WHITE);
-                    }
-                    else
-                        Device::display.drawBitmap(submarines[i].position.x - 6, submarines[i].position.y, sSubmarineLeft, 12, 8, WHITE);
-
-                    if (timeToSpawnRocket == 0)
-                    {
-                        for (byte j = 0; j < MAX_BOMBS; j++)
-                        {
-                            if (rockets[j].isActive == false)
-                            {
-                                rockets[j].create(submarines[i].position.x, submarines[i].position.y);
-                                Device::display.drawBitmap(submarines[i].position.x - 4, submarines[i].position.y - 8, sSplashMedium, 8, 8, WHITE);
-                                timeToSpawnRocket = 200 + random(0, 3000);
-                                break;
-                            }
-                        }
-                    }
+                    rockets[j].create(submarine.position.x, submarine.position.y);
+                    Device::display.drawBitmap(submarine.position.x - 4, submarine.position.y - 8, sSplashMedium, 8, 8, WHITE);
+                    timeToSpawnRocket = 200 + random(0, 3000);
+                    break;
                 }
             }
         }
@@ -250,7 +318,7 @@ public:
 
     void drawGUI()
     {
-        for (byte i = 0; i < ship.hp; i++)
+        for (byte i = 0; i < ship.getHp(); i++)
         {
             Device::display.drawBitmap(0 + (7 * i), 0, sHeart, 5, 5, WHITE);
         }
@@ -271,15 +339,18 @@ public:
 
     void setDamage()
     {
-        if (ship.hp > 0)
+        if (ship.getHp() > 0)
             ship.setDamage();
 
-        if (ship.hp == 0)
+        if (ship.getHp() == 0)
         {
-            Device::display.drawBitmap(ship.position.x - 16, 5, sShipDestroyed, 32, 12, WHITE);
-            Device::display.drawBitmap(ship.position.x - 8, ship.position.y, sExplosion, 8, 8, WHITE);
-            Device::display.drawBitmap(ship.position.x, ship.position.y, sExplosion, 8, 8, WHITE);
-            //ship.create();
+            u_int8_t shipX = ship.getPositionX();
+            u_int8_t shipY = ship.getPositionY();
+
+            Device::display.drawBitmap(shipX - 16, 5, sShipDestroyed, 32, 12, WHITE);
+            Device::display.drawBitmap(shipX - 8, shipY, sExplosion, 8, 8, WHITE);
+            Device::display.drawBitmap(shipX, shipY, sExplosion, 8, 8, WHITE);
+            // ship.create();
             score = 0;
             drawGUI();
             quit();
@@ -288,11 +359,8 @@ public:
 
     void quit() override
     {
-        ship.hp = 3;
+        ship.setHp(3);
         gameIsStarted = false;
         menuIsOpened = true;
     }
-
-
-
 };

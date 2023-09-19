@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include "Game.hpp"
+#include "Game.h"
 #include "Engine.hpp"
 
 class Debug : public Game

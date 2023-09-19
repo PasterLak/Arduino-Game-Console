@@ -1,5 +1,5 @@
-#ifndef Global_h
-#define Global_h
+#ifndef Time_h
+#define Time_h
 
 #include <Arduino.h>
 

@@ -9,7 +9,7 @@ static bool menuIsOpened = false;
 
 const byte GamesCount = 4;
 
-#include "Game.hpp"
+#include "Game.h"
 #include "SeaBattle.hpp"
 #include "Minecraft.hpp"
 #include "Debug.hpp"

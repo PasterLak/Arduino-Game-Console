@@ -1,7 +1,7 @@
 #pragma once
 #include <Arduino.h>
 #include <Audio.hpp>
-#include <Global.h>
+#include <Time.h>
 
 class Speaker
 {
