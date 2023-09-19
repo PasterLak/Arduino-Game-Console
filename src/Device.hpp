@@ -22,10 +22,14 @@ public:
     static Speaker dynamic;
     static Adafruit_SSD1306 display;
 
-    
-
     Device()
     {
+    }
+
+    static void updateInput()
+    {
+        joystick.update();
+        button.update();
     }
 };
 
@@ -33,4 +37,3 @@ Button Device::button(7);
 Joystick Device::joystick;
 Speaker Device::dynamic(12);
 Adafruit_SSD1306 Device::display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
-

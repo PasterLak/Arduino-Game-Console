@@ -26,8 +26,7 @@ public:
     }
     void update() override
     {
-        Device::joystick.update();
-        Device::button.update();
+
         Device::display.clearDisplay();
 
         if(Device::joystick.x > 700) x--;

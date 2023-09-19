@@ -39,8 +39,6 @@ public:
 
     void update() override
     {
-        Device::button.update();
-        Device::joystick.update();
 
         updateInput();
         ship.update();
