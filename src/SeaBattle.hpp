@@ -39,13 +39,13 @@ public:
 
     void update() override
     {
+        updateTimers();
 
         updateInput();
         ship.update();
         drawSprites();
         drawGUI();
-
-        updateTimers();
+        
     }
 
     void updateTimers()

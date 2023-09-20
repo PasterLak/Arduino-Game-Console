@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include "Vector2Byte.h"
+#include "extentions/Vector2Byte.h"
 
 class Submarine 
 {

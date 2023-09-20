@@ -5,7 +5,6 @@
 class ConsoleMenu
 {
 private:
-
 public:
     ConsoleMenu()
     {
@@ -72,17 +71,34 @@ private:
 
     void drawMenu()
     {
-        for (byte i = 0; i < GamesCount; i++)
+        for (byte slotId = 0; slotId < 6; slotId++)
         {
-            Device::display.setCursor(4, 5 + i * 10);
+            drawSlot(slotId);
+        }
+    }
 
-            if (selectedGameID == i)
-            {
-                Device::display.print(">");
-            }
 
-            Device::display.setCursor(12, 5 + i * 10);
-            Device::display.print(games[i]->name);
+    void drawSlot(byte slotId)
+    {
+        Device::display.setCursor(4, 5 + slotId * 10);
+
+        byte delta = selectedGameID % 6;
+
+        if (delta == slotId)
+        {
+            Device::display.print(">");
+        }
+
+        Device::display.setCursor(12, 5 + slotId * 10);
+
+        if (selectedGameID < 6)
+            Device::display.print(games[slotId]->name);
+        else
+        {
+            byte x = slotId + (selectedGameID - delta);
+
+            if (x < GamesCount)
+                Device::display.print(games[x]->name);
         }
     }
 

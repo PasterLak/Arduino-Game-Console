@@ -7,17 +7,22 @@ static byte selectedGameID;
 static bool gameIsStarted;
 static bool menuIsOpened = false;
 
-const byte GamesCount = 4;
+const byte GamesCount = 8;
 
 #include "Game.h"
 #include "SeaBattle.hpp"
 #include "Minecraft.hpp"
+#include "Pubg.hpp"
 #include "Debug.hpp"
 
 static Game *games[GamesCount]{
     new SeaBattle("Sea Battle", "0.9"),
-    new Minecraft("Minecraft demo", "0.1"),
+    new Minecraft("Minecraft", "0.1"),
     new Minecraft("GTA 8Bit demo", "0.3"),
+    new Minecraft("Mario", "0.3"),
+    new Minecraft("Spacebox", "0.3"),
+    new Minecraft("Lightmare", "0.3"),
+    new Pubg("PUBG", "0.3"),
     new Debug("Debug", "0.1")};
 
 #include "ConsoleMenu.hpp"

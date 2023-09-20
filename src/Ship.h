@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Arduino.h>
-#include "Vector2Byte.h"
+#include "extentions/Vector2Byte.h"
 #include "Time.h"
-#include "Transform.h"
+#include "extentions/Transform.h"
 
 class Ship : public Transform
 {

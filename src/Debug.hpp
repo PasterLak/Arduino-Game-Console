@@ -22,10 +22,9 @@ public:
     }
     void update() override
     {
-        Device::joystick.update();
         Device::display.clearDisplay();
 
-        if (Device::joystick.isMovedLeft())
+        if (Device::button.isDown())
         {
             gameIsStarted = false;
             menuIsOpened = true;

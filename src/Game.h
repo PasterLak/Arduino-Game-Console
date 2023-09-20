@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "Device.hpp"
 #include "Time.h"
-#include "Vector2Byte.h"
+#include "extentions/Vector2Byte.h"
 
 
 class Game
