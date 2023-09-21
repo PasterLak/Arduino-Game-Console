@@ -27,7 +27,6 @@ public:
     bool isInside(Transform transform);
     bool isInside(Vector2Byte vector2Byte);
     bool isInside(int x, int y);
-
     
 
     void setSize(int x1, int y1, int x2, int y2);

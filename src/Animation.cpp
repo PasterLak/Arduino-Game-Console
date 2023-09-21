@@ -1,36 +1,45 @@
-#pragma once
-#include <Arduino.h>
+#include "animation.h"
 
-class Animation
+Animation::Animation(const unsigned char **frames, int frameCount, int frameWidth, int frameHeight, int animationSpeed, int posX, int posY)
+    : frames(frames), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), animationSpeed(animationSpeed), posX(posX), posY(posY)
 {
-private:
-public:
-    int posX = 0;
-    int posY = 0;
+    currentFrame = 0;
+    isPlaying = false;
+    lastFrameTime = 0;
+}
 
-    int time;
-    int liveTime;
+void Animation::update()
+{
+    if (isPlaying)
+    {
+        long currentTime = millis();
+        if (currentTime - lastFrameTime >= animationSpeed)
+        {
+            lastFrameTime = currentTime;
+            currentFrame = (currentFrame + 1) % frameCount;
+        }
+    }
+}
 
-    bool isPlay = false;
+void Animation::play()
+{
+    isPlaying = true;
+    currentFrame = 0;
+    lastFrameTime = millis();
+}
 
-    Animation()
-    {
-    }
-    Animation(int x, int y, int liveTime)
-    {
-        time = liveTime;
-        posX = x;
-        posY = y;
-    }
+void Animation::stop()
+{
+    isPlaying = false;
+}
 
-    void update()
-    {
-    }
+void Animation::setPosition(int x, int y)
+{
+    posX = x;
+    posY = y;
+}
 
-    void play()
-    {
-    }
-    void stop()
-    {
-    }
-};
+bool Animation::isFinished()
+{
+    return currentFrame == frameCount - 1 && !isPlaying;
+}
