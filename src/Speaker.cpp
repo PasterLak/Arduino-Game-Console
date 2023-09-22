@@ -17,6 +17,7 @@ void Speaker::update()
 {
     if (isPlaying)
     {
+        Serial.println("playing");
         if (pauseBetweenNotes > 0)
         {
             pauseBetweenNotes -= deltaTime;
@@ -24,10 +25,12 @@ void Speaker::update()
 
         if (pauseBetweenNotes <= 0 && noteId < audio.notesCount)
         {
+            Serial.println(noteId);
             noTone(pin);
-            tone(pin, audio.notes[noteId].note, audio.notes[noteId].duration);
+            int noteDuration = (wholenote) / audio.notes[noteId].duration;
+            tone(pin, audio.notes[noteId].note, noteDuration *0.9f );
 
-            pauseBetweenNotes = audio.notes[noteId].duration + 50; // Может потребоваться корректировка в зависимости от вашей аппаратуры
+            pauseBetweenNotes = noteDuration ; // Может потребоваться корректировка в зависимости от вашей аппаратуры
 
             noteId++;
 
@@ -52,6 +55,8 @@ void Speaker::play(Audio audio)
     pauseBetweenNotes = 0;
     noteId = 0;
     isPlaying = true;
+
+    Serial.println("START");
 }
 
 void Speaker::stop()

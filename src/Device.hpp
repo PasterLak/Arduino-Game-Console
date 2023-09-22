@@ -2,7 +2,7 @@
 
 #include <input/Button.h>
 #include "input/Joystick.h"
-#include <Speaker.hpp>
+#include <Speaker.h>
 #include "Adafruit_I2CDevice.h"
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -35,5 +35,5 @@ public:
 
 Button Device::button(7);
 Joystick Device::joystick;
-Speaker Device::dynamic(12);
+Speaker Device::dynamic(8);
 Adafruit_SSD1306 Device::display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);

@@ -3,6 +3,9 @@
 #include <Arduino.h>
 #include "Game.h"
 #include "extentions/Trigger2D.h"
+#include "Speaker.h"
+#include "Clips.hpp"
+
 
 class Pubg : public Game
 {
@@ -13,6 +16,7 @@ private:
     Trigger2D trigger{minX,minY,maxX,maxY};
     u_int8_t x = Device::display.width() / 2;
     u_int8_t y = Device::display.height() / 2;
+    
 
     float time = 0;
 public:
@@ -28,11 +32,12 @@ public:
    
     void start() override
     {
+        Device::dynamic.play(Nokia);
         Serial.println(String(minX) + "/" + String(minY) + " - " + String(maxX) + "/" + String(maxY));
     }
     void update() override
     {
-
+        Device::dynamic.update();
         Device::display.clearDisplay();
 
         if(Device::button.isDown()) quit();
