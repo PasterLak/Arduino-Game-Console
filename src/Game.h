@@ -16,7 +16,7 @@ public:
     String version = "0";
     String discription = "";
 
-    Game(String name, String version)
+    Game(String& name, String& version)
     {
         this->name = name;
         this->version = version;

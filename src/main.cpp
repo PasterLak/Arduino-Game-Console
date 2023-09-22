@@ -2,7 +2,9 @@
 #include <Arduino.h>
 #include "Engine.hpp"
 
+
 Engine engine;
+
 
 void setup()
 {
@@ -19,8 +21,8 @@ void setup()
 
 void loop()
 {
-	updateDelta();
-
+updateDelta();
+ 
 	Device::updateInput();
 	
 	engine.update();
