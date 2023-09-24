@@ -3,12 +3,13 @@
 #include <Arduino.h>
 #include "extentions/Vector2Byte.h"
 #include "extentions/Transform.h"
+#include "extentions/GameObject.h"
 
 class Rocket : public Transform
 {
 private:
-    const byte speed = 1;
-    const byte damage = 10;
+    const byte _speed {1};
+    const byte _damage{10};
 
 public:
     bool isActive;

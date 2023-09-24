@@ -26,8 +26,8 @@ public:
     void create();
     void shot();
     void setDamage();
-    byte getSpeed();
-    byte getHp();
+    byte getSpeed() const;
+    byte getHp() const;
     void setHp(u_int8_t hp);
     bool canShot();
 };

@@ -78,6 +78,7 @@ public:
         if (gameIsStarted)
         {
             games[selectedGameID]->update();
+            games[selectedGameID]->draw();
         }
     }
 

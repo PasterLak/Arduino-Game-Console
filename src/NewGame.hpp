@@ -27,4 +27,9 @@ public:
 
         Device::display.display();
     }
+
+    void draw() override final
+    {
+
+    }
 };

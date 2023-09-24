@@ -6,11 +6,11 @@ Rocket::Rocket()
     position = Vector2Byte(0, 0);
 }
 
-void Rocket::update()
+void Rocket::update() 
 {
     if (isActive)
     {
-        position.y -= speed;
+        position.y -= _speed;
 
         if (position.y <= 0)
             destroy();

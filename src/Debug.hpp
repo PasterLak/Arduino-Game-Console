@@ -22,13 +22,18 @@ public:
     }
     void update() override
     {
-        Device::display.clearDisplay();
 
         if (Device::button.isDown())
         {
             gameIsStarted = false;
             menuIsOpened = true;
         }
+        
+    }
+
+    void draw() override final
+    {
+        Device::display.clearDisplay();
 
         Device::display.drawRect(0, 0, 128, 64, WHITE);
 

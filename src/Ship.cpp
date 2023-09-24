@@ -42,12 +42,12 @@ void Ship::setDamage()
     hp--;
 }
 
-byte Ship::getSpeed()
+byte Ship::getSpeed() const
 {
     return speed;
 }
 
-byte Ship::getHp()
+byte Ship::getHp() const
 {
     return hp;
 }

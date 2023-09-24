@@ -21,13 +21,13 @@ public:
         this->name = name;
         this->version = version;
     }
-    Game()
-    {
-    }
+    Game() = default;
+    ~Game() = default;
 
     virtual void awake() = 0;
     virtual void start() = 0;
     virtual void update() = 0;
+    virtual void draw() = 0;
 
     virtual void quit()
     {

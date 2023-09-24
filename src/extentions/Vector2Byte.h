@@ -24,7 +24,7 @@ public:
     static Vector2Byte normalized(Vector2Byte v1, Vector2Byte v2);
 };
 
-Vector2Byte operator+(Vector2Byte v1, Vector2Byte v2);
+Vector2Byte operator+(const Vector2Byte v1,const Vector2Byte v2);
 Vector2Byte operator-(Vector2Byte v1, Vector2Byte v2);
 Vector2Byte operator*(Vector2Byte v1, uint8_t scalar);
 Vector2Byte operator/(Vector2Byte v1, uint8_t scalar);

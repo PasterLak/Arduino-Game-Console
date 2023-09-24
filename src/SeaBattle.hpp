@@ -146,6 +146,11 @@ public:
         }
     }
 
+    void draw() override final
+    {
+        drawSprites();
+    }
+
     void drawSprites()
     {
         Device::display.clearDisplay();

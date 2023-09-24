@@ -66,7 +66,7 @@ Vector2Byte Vector2Byte::normalized(Vector2Byte v1, Vector2Byte v2)
     return Vector2Byte(uint8_t(v1.x / dis), uint8_t(v2.y / dis));
 }
 
-Vector2Byte operator+(Vector2Byte v1, Vector2Byte v2)
+Vector2Byte operator+(const Vector2Byte v1, const Vector2Byte v2)
 {
     return Vector2Byte(v1.x + v2.x, v1.y + v2.y);
 }

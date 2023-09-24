@@ -25,17 +25,17 @@ public:
 
     }
 
-    void awake() override
+    void awake() override final
     {
         Device::display.clearDisplay();
     }
    
-    void start() override
+    void start() override final
     {
         Device::dynamic.play(Nokia);
         Serial.println(String(minX) + "/" + String(minY) + " - " + String(maxX) + "/" + String(maxY));
     }
-    void update() override
+    void update() override final
     {
         Device::dynamic.update();
         Device::display.clearDisplay();
@@ -90,6 +90,11 @@ public:
         }
 
         Device::display.display();
+    }
+
+    void draw() override final
+    {
+
     }
 
     void quit() override
