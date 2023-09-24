@@ -12,11 +12,11 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "C:/Projects/Arduino-Game-Console/.pio/build/seeed_xiao/firmware.elf",
+            "executable": "/Users/vladis/Projects/Arduino-Game-Console/.pio/build/seeed_xiao/firmware.elf",
             "projectEnvName": "seeed_xiao",
-            "toolchainBinDir": "C:/Users/vlad-.VLAD/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
+            "toolchainBinDir": "/Users/vladis/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
             "internalConsoleOptions": "openOnSessionStart",
-            "svdPath": "C:/Users/vlad-.VLAD/.platformio/platforms/atmelsam/misc/svd/ATSAMD21G18A.svd",
+            "svdPath": "/Users/vladis/.platformio/platforms/atmelsam/misc/svd/ATSAMD21G18A.svd",
             "preLaunchTask": {
                 "type": "PlatformIO",
                 "task": "Pre-Debug"
@@ -26,21 +26,21 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "C:/Projects/Arduino-Game-Console/.pio/build/seeed_xiao/firmware.elf",
+            "executable": "/Users/vladis/Projects/Arduino-Game-Console/.pio/build/seeed_xiao/firmware.elf",
             "projectEnvName": "seeed_xiao",
-            "toolchainBinDir": "C:/Users/vlad-.VLAD/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
+            "toolchainBinDir": "/Users/vladis/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
             "internalConsoleOptions": "openOnSessionStart",
-            "svdPath": "C:/Users/vlad-.VLAD/.platformio/platforms/atmelsam/misc/svd/ATSAMD21G18A.svd"
+            "svdPath": "/Users/vladis/.platformio/platforms/atmelsam/misc/svd/ATSAMD21G18A.svd"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "C:/Projects/Arduino-Game-Console/.pio/build/seeed_xiao/firmware.elf",
+            "executable": "/Users/vladis/Projects/Arduino-Game-Console/.pio/build/seeed_xiao/firmware.elf",
             "projectEnvName": "seeed_xiao",
-            "toolchainBinDir": "C:/Users/vlad-.VLAD/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
+            "toolchainBinDir": "/Users/vladis/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin",
             "internalConsoleOptions": "openOnSessionStart",
-            "svdPath": "C:/Users/vlad-.VLAD/.platformio/platforms/atmelsam/misc/svd/ATSAMD21G18A.svd",
+            "svdPath": "/Users/vladis/.platformio/platforms/atmelsam/misc/svd/ATSAMD21G18A.svd",
             "loadMode": "manual"
         }
     ]
