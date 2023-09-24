@@ -8,8 +8,8 @@
 #include <Adafruit_GFX.h>
 #include "Adafruit_SSD1306.h"
 
-const byte SCREEN_WIDTH = 128;
-const byte SCREEN_HEIGHT = 64;
+const uint8_t SCREEN_WIDTH = 128;
+const uint8_t SCREEN_HEIGHT = 64;
 
 #define OLED_ADDRESS 0x3C
 

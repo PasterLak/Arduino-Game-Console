@@ -3,11 +3,11 @@
 #include "Sprites.hpp"
 #include "Device.hpp"
 
-static byte selectedGameID;
+static uint8_t selectedGameID;
 static bool gameIsStarted;
 static bool menuIsOpened = false;
 
-const byte GamesCount = 8;
+const uint8_t GamesCount = 8;
 
 #include "Game.h"
 #include "SeaBattle.hpp"
@@ -33,7 +33,7 @@ class Engine
 {
 
 private:
-    int logoTime = 2000;
+    short logoTime = 2000;
 
 public:
     Engine()

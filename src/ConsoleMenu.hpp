@@ -71,14 +71,14 @@ private:
 
     void drawMenu()
     {
-        for (byte slotId = 0; slotId < 6; slotId++)
+        for (uint8_t slotId = 0; slotId < 6; slotId++)
         {
             drawSlot(slotId);
         }
     }
 
 
-    void drawSlot(byte slotId)
+    void drawSlot(uint8_t slotId)
     {
         Device::display.setCursor(4, 5 + slotId * 10);
 

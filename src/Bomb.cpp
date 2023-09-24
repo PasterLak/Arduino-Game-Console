@@ -13,7 +13,7 @@ void Bomb::update()
 
     position.y += speed;
 
-    if (position.y > 64)
+    if (position.y > (uint8_t)64)
         destroy();
 }
 
@@ -22,7 +22,7 @@ void Bomb::destroy()
     isActive = false;
 }
 
-void Bomb::create(int x)
+void Bomb::create(uint8_t x)
 {
     isActive = true;
     position.x = x;

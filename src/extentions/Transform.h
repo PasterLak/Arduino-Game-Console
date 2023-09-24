@@ -8,12 +8,12 @@ protected:
     Vector2Byte position{0,0};
 
 public:
-    byte getPositionX()
+    uint8_t getPositionX()
     {
         return position.x;
     }
 
-    byte getPositionY()
+    uint8_t getPositionY()
     {
         return position.y;
     }

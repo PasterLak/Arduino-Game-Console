@@ -8,15 +8,18 @@
 class Rocket : public Transform
 {
 private:
-    const byte _speed {1};
-    const byte _damage{10};
+    const uint8_t _speed {1};
+    const uint8_t _damage{10};
+    bool _isActive;
 
 public:
-    bool isActive;
 
     Rocket();
 
     void update();
     void destroy();
-    void create(int x, int y);
+    void create(uint8_t x, uint8_t y);
+
+    bool isActive() const {return _isActive;} 
+    void setActive(bool state) { _isActive = state;}
 };

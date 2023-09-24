@@ -6,8 +6,8 @@
 class Submarine 
 {
 private:
-    byte speed = 1;
-    const byte damage = 10;
+    uint8_t speed = 1;
+    const uint8_t damage = 10;
     bool _isActive = false;
 
 public:

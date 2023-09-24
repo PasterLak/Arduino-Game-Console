@@ -2,13 +2,13 @@
 
 Rocket::Rocket()
 {
-    isActive = false;
+    setActive(false);
     position = Vector2Byte(0, 0);
 }
 
-void Rocket::update() 
+ void Rocket::update()
 {
-    if (isActive)
+    if (isActive())
     {
         position.y -= _speed;
 
@@ -19,12 +19,12 @@ void Rocket::update()
 
 void Rocket::destroy()
 {
-    isActive = false;
+    setActive(false);
 }
 
-void Rocket::create(int x, int y)
+void Rocket::create(uint8_t x, uint8_t y)
 {
-    isActive = true;
+    setActive(true);
     position.x = x;
     position.y = y;
 }

@@ -8,14 +8,14 @@
 class Ship : public Transform
 {
 private:
-    const byte speed = 4;
-    const byte maxHp = 3;
-    const int reloadTime = 500;
+    const uint8_t speed = 4;
+    const uint8_t maxHp = 3;
+    const short reloadTime = 500;
 
-    const byte shipY = 5;
+    const uint8_t shipY = 5;
 
-    byte hp;
-    int timeToReload;
+    uint8_t hp;
+    short timeToReload;
     bool _canShot;
 
 public:
@@ -26,8 +26,8 @@ public:
     void create();
     void shot();
     void setDamage();
-    byte getSpeed() const;
-    byte getHp() const;
+    uint8_t getSpeed() const;
+    uint8_t getHp() const;
     void setHp(u_int8_t hp);
     bool canShot();
 };

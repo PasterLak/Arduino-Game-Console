@@ -16,14 +16,14 @@ class SeaBattle : public Game
 {
 private:
 public:
-    int score = 0;
+    uint8_t score = 0;
     Ship ship;
     Bomb bombs[MAX_BOMBS];
     Submarine submarines[MAX_SUBMARINES]{{(int8_t)1}, {(int8_t)-1}, {(int8_t)1}, {(int8_t)-1}, {(int8_t)1}, {(int8_t)1}};
     Rocket rockets[MAX_BOMBS];
 
-    int timeToSpawnRocket = 200;
-    int timeToSpawnSubmarine = 800;
+    short timeToSpawnRocket = 200;
+    short timeToSpawnSubmarine = 800;
 
     SeaBattle(String name, String version) : Game(name, version)
     {
@@ -172,7 +172,7 @@ public:
     {
         for (byte i = 0; i < MAX_BOMBS; i++)
         {
-            if (rockets[i].isActive == true)
+            if (rockets[i].isActive() == true)
             {
                 int dis = Vector2Byte::distance(ship.getPosition(), rockets[i].getPosition());
 
@@ -263,7 +263,7 @@ public:
     {
         for (byte j = 0; j < MAX_BOMBS; j++)
         {
-            if (rockets[j].isActive)
+            if (rockets[j].isActive())
             {
                 byte dis = Vector2Byte::distance(bomb.position, rockets[j].getPosition());
 
@@ -308,7 +308,7 @@ public:
         {
             for (byte j = 0; j < MAX_BOMBS; j++)
             {
-                if (rockets[j].isActive == false)
+                if (rockets[j].isActive() == false)
                 {
                     rockets[j].create(submarine.position.x, submarine.position.y);
                     Device::display.drawBitmap(submarine.position.x - 4, submarine.position.y - 8, sSplashMedium, 8, 8, WHITE);

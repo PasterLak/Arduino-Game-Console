@@ -2,14 +2,14 @@
 
 Button::Button(byte pin)
 {
-    this->pin = pin;
+    this->_pin = pin;
     pinMode(pin, INPUT_PULLUP);
 }
 
 void Button::update()
 {
     lastState = state;
-    state = digitalRead(pin);
+    state = digitalRead(_pin);
 }
 
 bool Button::isPressed()
@@ -19,18 +19,12 @@ bool Button::isPressed()
 
 bool Button::isDown()
 {
-    if (lastState == false && state != lastState)
-        return true;
-
-    return false;
+    return (lastState == false && state != lastState);
 }
 
 bool Button::isUp()
 {
-    if (lastState == true && state != lastState)
-        return true;
-
-    return false;
+   return (lastState == true && state != lastState);
 }
 
 bool Button::getState()

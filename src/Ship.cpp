@@ -27,7 +27,7 @@ void Ship::destroy()
 void Ship::create()
 {
     hp = maxHp;
-    position.x = 64;
+    position.x = (uint8_t)64;
     position.y = shipY;
 }
 
@@ -42,12 +42,12 @@ void Ship::setDamage()
     hp--;
 }
 
-byte Ship::getSpeed() const
+uint8_t Ship::getSpeed() const
 {
     return speed;
 }
 
-byte Ship::getHp() const
+uint8_t Ship::getHp() const
 {
     return hp;
 }

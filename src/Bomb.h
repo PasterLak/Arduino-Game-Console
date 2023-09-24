@@ -8,8 +8,8 @@
 class Bomb
 {
 private:
-    const byte speed = 1;
-    const byte damage = 10;
+    const uint8_t speed = 1;
+    const uint8_t damage = 10;
 
 public:
     Vector2Byte position;
@@ -22,5 +22,5 @@ public:
 
     void destroy();
 
-    void create(int x);
+    void create(uint8_t x);
 };

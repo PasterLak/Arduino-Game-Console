@@ -4,7 +4,7 @@
 class Button
 {
 private:
-    byte pin;
+    byte _pin;
     bool state = 0;
     bool lastState = 0;
 

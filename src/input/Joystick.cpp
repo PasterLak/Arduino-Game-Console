@@ -1,5 +1,8 @@
 #include "Joystick.h"
 
+#define maxAxisValue 700
+#define minAxisValue 300
+
 Joystick::Joystick()
 {
     pinMode(ledPin, OUTPUT);
@@ -38,25 +41,10 @@ void Joystick::update()
     lastStateRight = stateRight;
     lastStateLeft = stateLeft;
 
-    if (y < 300)
-        stateDown = 1;
-    else
-        stateDown = 0;
-
-    if (y > 700)
-        stateUp = 1;
-    else
-        stateUp = 0;
-
-    if (x > 700)
-        stateLeft = 1;
-    else
-        stateLeft = 0;
-
-    if (x < 300)
-        stateRight = 1;
-    else
-        stateRight = 0;
+    stateDown = (y < minAxisValue) ? 1 : 0;
+    stateUp = (y > maxAxisValue) ? 1 : 0;
+    stateLeft = (x > maxAxisValue) ? 1 : 0;
+    stateRight = (x < minAxisValue) ? 1 : 0;
 }
 
 bool Joystick::isPressed()
@@ -64,80 +52,32 @@ bool Joystick::isPressed()
     return state;
 }
 
-bool Joystick::isDown()
-{
-    if (lastState == false)
-    {
-        if (state != lastState)
-        {
-            return true;
-        }
-    }
-
-    return false;
+bool Joystick::isDown() {
+    return (lastState == false && state != lastState);
 }
+
 
 bool Joystick::isUp()
 {
-    if (lastState == true)
-    {
-        if (state != lastState)
-        {
-            return true;
-        }
-    }
-
-    return false;
+    return (lastState == true && state != lastState);
 }
 
-bool Joystick::isMovedDown()
-{
-    if (lastStateDown == false)
-    {
-        if (stateDown != lastStateDown)
-        {
-            return true;
-        }
-    }
-
-    return false;
+bool Joystick::isMovedDown() {
+    return (lastStateDown == false && stateDown != lastStateDown);
 }
 
-bool Joystick::isMovedUp()
-{
-    if (lastStateUp == false)
-    {
-        if (stateUp != lastStateUp)
-        {
-            return true;
-        }
-    }
 
-    return false;
+bool Joystick::isMovedUp() {
+    return (lastStateUp == false && stateUp != lastStateUp);
 }
+
 
 bool Joystick::isMovedLeft()
 {
-    if (lastStateLeft == false)
-    {
-        if (stateLeft != lastStateLeft)
-        {
-            return true;
-        }
-    }
-
-    return false;
+    return (lastStateLeft == false && stateLeft != lastStateLeft);
 }
 
 bool Joystick::isMovedRight()
 {
-    if (lastStateRight == false)
-    {
-        if (stateRight != lastStateRight)
-        {
-            return true;
-        }
-    }
-
-    return false;
+    return (lastStateRight == false && stateRight != lastStateRight);
 }
