@@ -5,7 +5,7 @@
 
 extern uint8_t deltaTime;
 
-static unsigned long oldTime(0);
+extern unsigned long oldTime;
 
 
 static void updateDelta()

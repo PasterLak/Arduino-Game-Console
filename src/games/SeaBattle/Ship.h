@@ -30,7 +30,8 @@ public:
     uint8_t getHp() const;
     void setHp(u_int8_t hp);
     bool canShot() const;
-    void setCanShot(bool state){
+    void setCanShot(bool state)
+    {
         _canShot = state;
     timeToReload = state ? (short)0 : reloadTime;
     }

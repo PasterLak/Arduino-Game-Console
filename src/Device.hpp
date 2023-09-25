@@ -35,7 +35,7 @@ public:
 };
 
 Button Device::button(7);
-Joystick Device::joystick(1,2, false, true);
+Joystick Device::joystick(10,9, false, true);
 
 Speaker Device::dynamic(8);
 Adafruit_SSD1306 Device::display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);

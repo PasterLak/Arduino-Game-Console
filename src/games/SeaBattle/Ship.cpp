@@ -9,13 +9,14 @@ Ship::Ship()
 
 void Ship::update()
 {
-    
+    //Serial.println(reloadTime);
     if (timeToReload > 0)
         timeToReload  -= deltaTime;
 
     if (timeToReload < 0)
     {
-         setCanShot(true);   
+         _canShot = true;  
+         timeToReload = 0;
     }
 }
 
@@ -33,7 +34,9 @@ void Ship::create()
 
 void Ship::shot()
 {
-     setCanShot(false);
+    _canShot = false;
+    timeToReload = reloadTime;
+     //setCanShot(false);
 }
 
 void Ship::setDamage()

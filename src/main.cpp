@@ -21,6 +21,7 @@ void loop()
     updateDelta();
  
 	Device::updateInput();
+	//Device::dynamic.update();
 	
 	engine.update();
 }

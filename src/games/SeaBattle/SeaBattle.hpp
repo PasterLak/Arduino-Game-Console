@@ -98,6 +98,7 @@ public:
     {
         if (Device::joystick.isMovedDown() || Device::button.isDown())
         {
+            if(ship.canShot())
             shootBomb();
         }
 
@@ -107,11 +108,6 @@ public:
 
     void shootBomb()
     {
-        if (!ship.canShot())
-            return;
-
-       
-
         for (uint8_t i = 0; i < MAX_BOMBS; i++)
         {
             if (bombs[i].isActive == false)

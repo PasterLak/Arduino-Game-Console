@@ -32,12 +32,12 @@ public:
    
     void start() override final
     {
-        Device::dynamic.play(Nokia);
-        Serial.println(String(minX) + "/" + String(minY) + " - " + String(maxX) + "/" + String(maxY));
+        //Device::dynamic.play(Nokia);
+        //Serial.println(String(minX) + "/" + String(minY) + " - " + String(maxX) + "/" + String(maxY));
     }
     void update() override final
     {
-        Device::dynamic.update();
+        //Device::dynamic.update();
         Device::display.clearDisplay();
 
         if(Device::button.isDown()) quit();
@@ -57,10 +57,14 @@ public:
         
         }
         
-        if(Device::joystick.x > 700) x--;
-        if(Device::joystick.x < 300) x++;
-        if(Device::joystick.y > 700) y--;
-        if(Device::joystick.y < 300) y++;
+        if (Device::joystick.isLeft())
+            x--;
+        if (Device::joystick.isRight())
+            x++;
+        if (Device::joystick.isDown())
+            y++;
+        if (Device::joystick.isUp())
+            y--;
 
         
 

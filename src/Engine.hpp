@@ -50,6 +50,8 @@ public:
         Device::display.clearDisplay();
         Device::display.setTextSize(1);
         Device::display.setTextColor(WHITE);
+
+        //Device::dynamic.play(StarWars);
     }
 
     void update()
