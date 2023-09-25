@@ -1,8 +1,14 @@
 #include "Vector2Byte.h"
-
+#include <array>
 
 Vector2Byte::Vector2Byte()
 {
+    zero();
+}
+
+Vector2Byte::Vector2Byte(const Vector2Byte& v)
+{
+    *this = v;
 }
 
 Vector2Byte::Vector2Byte(uint8_t x, uint8_t y)
@@ -49,7 +55,7 @@ void Vector2Byte::right()
 
 void Vector2Byte::normalize()
 {
-    int dis = distance(Vector2Byte(0, 0), Vector2Byte(x, y));
+    int dis = distance(Vector2Byte(0, 0), *this);
     x = uint8_t(x / dis);
     y = uint8_t(y / dis);
 }
@@ -60,11 +66,26 @@ int Vector2Byte::distance(Vector2Byte v1, Vector2Byte v2)
     return dis;
 }
 
-Vector2Byte Vector2Byte::normalized(Vector2Byte v1, Vector2Byte v2)
+Vector2Byte Vector2Byte::normalized( Vector2Byte& v1, Vector2Byte& v2)
 {
     int dis = distance(v1, v2);
     return Vector2Byte(uint8_t(v1.x / dis), uint8_t(v2.y / dis));
 }
+
+Vector2Byte& Vector2Byte::operator=(const Vector2Byte& v1)
+{
+    x = v1.x; 
+    y = v1.y;
+    return *this;
+}
+/*
+Vector2Byte& Vector2Byte::operator=( Vector2Byte&& v1)
+{
+    swap(v1.x, this->x);
+    swap(v1.y, this->y);
+    return *this;
+}
+*/
 
 Vector2Byte operator+(const Vector2Byte v1, const Vector2Byte v2)
 {
@@ -91,17 +112,17 @@ bool operator>(Vector2Byte v1, Vector2Byte v2)
     return v1.x > v2.x && v1.y > v2.y;
 }
 
-bool operator<(Vector2Byte v1, Vector2Byte v2)
+bool operator<(const Vector2Byte v1, const Vector2Byte v2)
 {
     return v1.x < v2.x && v1.y < v2.y;
 }
 
-bool operator<=(Vector2Byte v1, Vector2Byte v2)
+bool operator<=(const Vector2Byte v1, const Vector2Byte v2)
 {
     return v1.x <= v2.x && v1.y <= v2.y;
 }
 
-bool operator>=(Vector2Byte v1, Vector2Byte v2)
+bool operator>=(const Vector2Byte v1, const Vector2Byte v2)
 {
     return v1.x >= v2.x && v1.y >= v2.y;
 }

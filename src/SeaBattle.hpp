@@ -84,7 +84,7 @@ public:
 
     void spawnSubmarine()
     {
-        for (byte i = 0; i < MAX_SUBMARINES; i++)
+        for (uint8_t i = 0; i < MAX_SUBMARINES; i++)
         {
             if (!submarines[i].isActive())
             {
@@ -110,7 +110,7 @@ public:
     {
         if (ship.canShot())
         {
-            for (byte i = 0; i < MAX_BOMBS; i++)
+            for (uint8_t i = 0; i < MAX_BOMBS; i++)
             {
                 if (bombs[i].isActive == false)
                 {
@@ -170,7 +170,7 @@ public:
 
     void drawRockets()
     {
-        for (byte i = 0; i < MAX_BOMBS; i++)
+        for (uint8_t i = 0; i < MAX_BOMBS; i++)
         {
             if (rockets[i].isActive() == true)
             {
@@ -184,8 +184,8 @@ public:
                 }
                 else
                 {
-                    int rocketX = rockets[i].getPositionX();
-                    int rocketY = rockets[i].getPositionY();
+                    uint8_t rocketX = rockets[i].getPositionX();
+                    uint8_t rocketY = rockets[i].getPositionY();
                     drawRocketSplash(rocketX, rocketY);
                     rockets[i].update();
                     Device::display.drawBitmap(rocketX - 1, rocketY - 4, sRocket, 3, 8, WHITE);
@@ -194,7 +194,7 @@ public:
         }
     }
 
-    void drawRocketSplash(int x, int y)
+    void drawRocketSplash(uint8_t x, uint8_t y)
     {
         if (y <= 17 && y > 15)
             Device::display.drawBitmap(x - 2, 10, sSplashSmall, 4, 4, WHITE);
@@ -214,7 +214,7 @@ public:
 
     void drawBombs()
     {
-        for (byte i = 0; i < MAX_BOMBS; i++)
+        for (uint8_t i = 0; i < MAX_BOMBS; i++)
         {
             if (bombs[i].isActive == true)
             {
@@ -242,11 +242,11 @@ public:
 
     void checkBombCollision(Bomb &bomb)
     {
-        for (byte j = 0; j < MAX_SUBMARINES; j++)
+        for (uint8_t j = 0; j < MAX_SUBMARINES; j++)
         {
             if (submarines[j].isActive())
             {
-                byte dis = Vector2Byte::distance(submarines[j].position, bomb.position);
+                uint8_t dis = Vector2Byte::distance(submarines[j].position, bomb.position);
 
                 if (dis < 6)
                 {
@@ -261,11 +261,11 @@ public:
 
     void checkRocketCollision(Bomb &bomb)
     {
-        for (byte j = 0; j < MAX_BOMBS; j++)
+        for (uint8_t j = 0; j < MAX_BOMBS; j++)
         {
             if (rockets[j].isActive())
             {
-                byte dis = Vector2Byte::distance(bomb.position, rockets[j].getPosition());
+                uint8_t dis = Vector2Byte::distance(bomb.position, rockets[j].getPosition());
 
                 if (dis < 6)
                 {
@@ -279,7 +279,7 @@ public:
 
     void drawSubmarines()
     {
-        for (byte i = 0; i < MAX_SUBMARINES; i++)
+        for (uint8_t i = 0; i < MAX_SUBMARINES; i++)
         {
             if (submarines[i].isActive() == true)
             {
@@ -306,7 +306,7 @@ public:
     {
         if (timeToSpawnRocket == 0)
         {
-            for (byte j = 0; j < MAX_BOMBS; j++)
+            for (uint8_t j = 0; j < MAX_BOMBS; j++)
             {
                 if (rockets[j].isActive() == false)
                 {

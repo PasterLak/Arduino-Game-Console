@@ -82,7 +82,7 @@ private:
     {
         Device::display.setCursor(4, 5 + slotId * 10);
 
-        byte delta = selectedGameID % 6;
+        uint8_t delta = selectedGameID % 6;
 
         if (delta == slotId)
         {
@@ -95,7 +95,7 @@ private:
             Device::display.print(games[slotId]->name);
         else
         {
-            byte x = slotId + (selectedGameID - delta);
+            uint8_t x = slotId + (selectedGameID - delta);
 
             if (x < GamesCount)
                 Device::display.print(games[x]->name);

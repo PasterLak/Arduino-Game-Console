@@ -9,9 +9,9 @@ class Audio
 public:
 
     
-    int notesCount;
+    uint16_t notesCount;
     
-    Audio( const Note* notes, int notesCount)
+    Audio( const Note* notes, uint16_t notesCount)
     {
       this-> notesCount = notesCount;
       

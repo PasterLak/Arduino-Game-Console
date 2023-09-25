@@ -3,21 +3,22 @@
 struct Note
 {
 public:
-        int note;
-        int duration;
+        uint16_t note;
+        uint16_t duration;
 
-        Note(int note, int duration)
+        Note(uint16_t note, uint16_t duration)
         {
                 this->note = note;
                 this->duration = duration;
         }
-        Note(int note)
+        Note(uint16_t note)
         {
                 this->note = note;
+                duration = 0;
         }
 };
 
-enum class octave1 : int
+enum class octave1 : uint16_t
 {
         C = 33,
         Cs = 35,
@@ -33,7 +34,7 @@ enum class octave1 : int
         H = 62
 };
 
-enum class octave2 : int
+enum class octave2 : uint16_t
 {
         C = 65,
         Cs = 69,
@@ -49,7 +50,7 @@ enum class octave2 : int
         H = 123
 };
 
-enum class octave3 : int
+enum class octave3 : uint16_t
 {
         C = 131,
         Cs = 139,
@@ -65,7 +66,7 @@ enum class octave3 : int
         H = 247
 };
 
-enum class octave4 : int
+enum class octave4 : uint16_t
 {
         C = 262,
         Cs = 277,
@@ -81,7 +82,7 @@ enum class octave4 : int
         H = 494
 };
 
-enum class octave5 : int
+enum class octave5 : uint16_t
 {
         C = 523,
         Cs = 554,

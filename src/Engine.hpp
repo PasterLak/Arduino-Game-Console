@@ -82,10 +82,13 @@ public:
         }
     }
 
-    void startGame()
+    void startGame(uint8_t gameID)
     {
+        if(gameID >= GamesCount) return;
+
         gameIsStarted = true;
-        games[selectedGameID]->awake();
-        games[selectedGameID]->start();
+        menuIsOpened = false;
+        games[gameID]->awake();
+        games[gameID]->start();
     }
 };

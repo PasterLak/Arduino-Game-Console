@@ -4,7 +4,8 @@
 #include <vector>
 
 template <typename T>
-class Pool {
+class Pool 
+{
 public:
     Pool(int count);
     T* GetFreeElement();
@@ -15,15 +16,18 @@ private:
 };
 
 template <typename T>
-Pool<T>::Pool(int count) {
+Pool<T>::Pool(int count) 
+{
     pool.reserve(count);
-    for (int i = 0; i < count; ++i) {
+    for (int i = 0; i < count; ++i) 
+    {
         pool.push_back(T());
     }
 }
 
 template <typename T>
-T* Pool<T>::GetFreeElement() {
+T* Pool<T>::GetFreeElement() 
+{
     for (auto& item : pool) {
         if (!item.IsActive()) {
             item.SetActive(true);
@@ -34,9 +38,12 @@ T* Pool<T>::GetFreeElement() {
 }
 
 template <typename T>
-bool Pool<T>::HasFreeElement() const {
-    for (const auto& item : pool) {
-        if (!item.IsActive()) {
+bool Pool<T>::HasFreeElement() const 
+{
+    for (const auto& item : pool) 
+    {
+        if (!item.IsActive()) 
+        {
             return true;
         }
     }
