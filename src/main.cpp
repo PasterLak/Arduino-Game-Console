@@ -13,13 +13,12 @@ void setup()
 	engine.start();
 
 	oldTime = millis();
-
 	
 }
 
 void loop()
 {
-updateDelta();
+    updateDelta();
  
 	Device::updateInput();
 	

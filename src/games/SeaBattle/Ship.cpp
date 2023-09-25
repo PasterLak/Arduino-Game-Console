@@ -57,7 +57,7 @@ void Ship::setHp(u_int8_t val)
     hp = val;
 }
 
-bool Ship::canShot()
+bool Ship::canShot() const
 {
     return _canShot;
 }

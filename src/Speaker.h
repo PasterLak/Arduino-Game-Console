@@ -8,10 +8,10 @@
 class Speaker
 {
 private:
-    byte pin;
-    int pauseBetweenNotes;
-    int noteId;
-    Audio audio;
+    uint8_t pin;
+    uint16_t pauseBetweenNotes;
+    uint16_t noteId;
+    Audio* audio = new Audio;
 
 
     int wholenote = (60000 * 4) / 180;
@@ -22,11 +22,11 @@ public:
     bool isPlaying;
     bool loop;
 
-    Speaker(byte pin);
+    Speaker(uint8_t pin);
 
     void update();
 
-    void play(Audio audio);
+    void play(const Audio& audio);
 
     void stop();
 };

@@ -29,5 +29,5 @@ public:
     uint8_t getSpeed() const;
     uint8_t getHp() const;
     void setHp(u_int8_t hp);
-    bool canShot();
+    bool canShot() const;
 };

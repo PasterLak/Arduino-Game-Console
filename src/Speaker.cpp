@@ -23,18 +23,18 @@ void Speaker::update()
             pauseBetweenNotes -= deltaTime;
         }
 
-        if (pauseBetweenNotes <= 0 && noteId < audio.notesCount)
+        if (pauseBetweenNotes <= 0 && noteId < audio->notesCount)
         {
             Serial.println(noteId);
             noTone(pin);
-            int noteDuration = (wholenote) / audio.notes[noteId].duration;
-            tone(pin, audio.notes[noteId].note, noteDuration *0.9f );
+            int noteDuration = (wholenote) / audio->notes[noteId].duration;
+            tone(pin, audio->notes[noteId].note, noteDuration *0.9f );
 
-            pauseBetweenNotes = noteDuration ; // Может потребоваться корректировка в зависимости от вашей аппаратуры
+            pauseBetweenNotes = noteDuration ; 
 
             noteId++;
 
-            if (noteId == audio.notesCount)
+            if (noteId == audio->notesCount)
             {
                 if (loop)
                 {
@@ -49,9 +49,9 @@ void Speaker::update()
     }
 }
 
-void Speaker::play(Audio audio)
+void Speaker::play(const Audio& audio)
 {
-    this->audio = audio;
+    *this->audio = audio;
     pauseBetweenNotes = 0;
     noteId = 0;
     isPlaying = true;

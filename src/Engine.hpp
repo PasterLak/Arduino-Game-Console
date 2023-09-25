@@ -10,7 +10,7 @@ static bool menuIsOpened = false;
 const uint8_t GamesCount = 8;
 
 #include "Game.h"
-#include "SeaBattle.hpp"
+#include "games/SeaBattle/SeaBattle.hpp"
 #include "Minecraft.hpp"
 #include "Pubg.hpp"
 #include "Debug.hpp"
@@ -33,7 +33,7 @@ class Engine
 {
 
 private:
-    short logoTime = 2000;
+    uint16_t logoTime = 2000;
 
 public:
     Engine()

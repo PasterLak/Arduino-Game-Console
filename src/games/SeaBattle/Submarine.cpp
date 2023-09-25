@@ -10,7 +10,7 @@ Submarine::Submarine(int8_t direction)
         this->direction = direction;
 }
 
-bool Submarine::isActive()
+bool Submarine::isActive() const
 {
     return _isActive;
 }

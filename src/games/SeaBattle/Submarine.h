@@ -16,8 +16,9 @@ public:
 
     Submarine();
     Submarine(int8_t direction);
+    ~Submarine() = default;
 
-    bool isActive();
+    bool isActive() const;
     void update();
     void destroy();
     void create();

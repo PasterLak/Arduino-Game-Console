@@ -43,7 +43,7 @@ public:
         if(Device::button.isDown()) quit();
         time += getSeconds();
 
-        if(((int)time) >= 2)
+        if(((uint16_t)time) >= 2)
         {
             time = 0;
             if(minX < (u_int8_t)50) minX = minX + 2;
@@ -56,7 +56,6 @@ public:
 
         
         }
-        
         
         if(Device::joystick.x > 700) x--;
         if(Device::joystick.x < 300) x++;

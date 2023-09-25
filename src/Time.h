@@ -27,9 +27,7 @@ static unsigned int fps()
 #pragma GCC diagnostic ignored "-Wunused-function"
 static float getSeconds()
 {
-
    return deltaTime / 1000.0f;
-
 }
 
 

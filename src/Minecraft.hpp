@@ -59,6 +59,7 @@ public:
     void draw() override final
     {
         Device::display.clearDisplay();
+        
         if (name == "Minecraft")
         {
             Device::display.clearDisplay();

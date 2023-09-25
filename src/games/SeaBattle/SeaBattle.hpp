@@ -3,10 +3,10 @@
 #include <Arduino.h>
 #include "Game.h"
 
-#include "Ship.h"
-#include "Submarine.h"
-#include "Bomb.h"
-#include "Rocket.h"
+#include "games/SeaBattle/Ship.h"
+#include "games/SeaBattle/Submarine.h"
+#include "games/SeaBattle/Bomb.h"
+#include "games/SeaBattle/Rocket.h"
 #include "Sprites.hpp"
 
 #define MAX_BOMBS 10
