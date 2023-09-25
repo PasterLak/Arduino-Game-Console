@@ -17,7 +17,6 @@ static void updateDelta()
 
 }
 
-
 static unsigned int fps()
 {
     if(deltaTime > 0)
@@ -28,6 +27,11 @@ static unsigned int fps()
 static float getSeconds()
 {
    return deltaTime / 1000.0f;
+}
+
+static float getFrameTime()
+{
+   return deltaTime;
 }
 
 

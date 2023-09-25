@@ -10,8 +10,11 @@ public:
     uint8_t y = 0;
 
     Vector2Byte();
+    ~Vector2Byte() = default;
     Vector2Byte(const Vector2Byte& v);
+    Vector2Byte( Vector2Byte&& v);
     Vector2Byte(uint8_t x, uint8_t y);
+    
 
     void zero();
     void one();
@@ -25,7 +28,7 @@ public:
     static Vector2Byte normalized( Vector2Byte& v1,  Vector2Byte& v2);
 
     Vector2Byte& operator=(const Vector2Byte& v1);
-    //Vector2Byte& operator=( Vector2Byte&& v1);
+    Vector2Byte& operator=(Vector2Byte&& v1);
 };
 
 Vector2Byte operator+(const Vector2Byte v1,const Vector2Byte v2);

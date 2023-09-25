@@ -11,6 +11,11 @@ Vector2Byte::Vector2Byte(const Vector2Byte& v)
     *this = v;
 }
 
+Vector2Byte::Vector2Byte(Vector2Byte&& v)
+{
+    *this = v;
+}
+
 Vector2Byte::Vector2Byte(uint8_t x, uint8_t y)
 {
     this->x = x;
@@ -78,14 +83,14 @@ Vector2Byte& Vector2Byte::operator=(const Vector2Byte& v1)
     y = v1.y;
     return *this;
 }
-/*
+
 Vector2Byte& Vector2Byte::operator=( Vector2Byte&& v1)
 {
-    swap(v1.x, this->x);
-    swap(v1.y, this->y);
+    std::swap(v1.x, this->x);
+    std::swap(v1.y, this->y);
     return *this;
 }
-*/
+
 
 Vector2Byte operator+(const Vector2Byte v1, const Vector2Byte v2)
 {
