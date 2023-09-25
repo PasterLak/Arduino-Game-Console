@@ -43,7 +43,7 @@ public:
         Device::display.println("X: " + String(Device::joystick.x) + " Y: " + String(Device::joystick.y));
 
         Device::display.setCursor(5, 25);
-        Device::display.println("Delta Time: " + String(deltaTime));
+        Device::display.println("FrameTime: " + String(deltaTime) + " ms.");
 
         Device::display.setCursor(5, 35);
         Device::display.println("Fps: " + String(1000/deltaTime));
