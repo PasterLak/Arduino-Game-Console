@@ -33,7 +33,7 @@ class Engine
 {
 
 private:
-    uint16_t logoTime = 2000;
+    int16_t logoTime = 2000;
 
 public:
     Engine()
@@ -61,6 +61,7 @@ public:
             Device::display.drawBitmap(0, 0, sLogo, 128, 64, WHITE);
             Device::display.display();
 
+            
             logoTime -= deltaTime;
         }
         if (logoTime < 0)

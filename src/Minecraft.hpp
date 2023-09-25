@@ -31,14 +31,14 @@ public:
             quit();
 
 
-        if (Device::joystick.x > 700)
+        if (Device::joystick.isLeft())
             x--;
-        if (Device::joystick.x < 300)
+        if (Device::joystick.isRight())
             x++;
-        if (Device::joystick.y > 700)
-            y--;
-        if (Device::joystick.y < 300)
+        if (Device::joystick.isDown())
             y++;
+        if (Device::joystick.isUp())
+            y--;
 
         if (x <= 0)
             x = 128;

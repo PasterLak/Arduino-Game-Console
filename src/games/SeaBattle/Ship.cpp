@@ -4,18 +4,18 @@ Ship::Ship()
 {
     hp = maxHp;
     position = {64, shipY};
-    timeToReload = 0;
-    _canShot = true;
+    setCanShot(true);
 }
 
 void Ship::update()
 {
+    
     if (timeToReload > 0)
-        timeToReload -= deltaTime;
+        timeToReload  -= deltaTime;
 
-    if (timeToReload <= 0)
+    if (timeToReload < 0)
     {
-        _canShot = true;
+         setCanShot(true);   
     }
 }
 
@@ -33,8 +33,7 @@ void Ship::create()
 
 void Ship::shot()
 {
-    _canShot = false;
-    timeToReload = reloadTime;
+     setCanShot(false);
 }
 
 void Ship::setDamage()
@@ -57,7 +56,11 @@ void Ship::setHp(u_int8_t val)
     hp = val;
 }
 
+
+
 bool Ship::canShot() const
 {
     return _canShot;
 }
+
+

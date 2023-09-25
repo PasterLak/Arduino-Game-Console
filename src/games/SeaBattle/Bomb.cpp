@@ -13,7 +13,7 @@ void Bomb::update()
 
     position.y += speed;
 
-    if (position.y > (uint8_t)64)
+    if (position.y > 64)
         destroy();
 }
 

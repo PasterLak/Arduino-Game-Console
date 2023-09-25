@@ -45,7 +45,6 @@ public:
         ship.update();
         drawSprites();
         drawGUI();
-        
     }
 
     void updateTimers()
@@ -108,16 +107,18 @@ public:
 
     void shootBomb()
     {
-        if (ship.canShot())
+        if (!ship.canShot())
+            return;
+
+       
+
+        for (uint8_t i = 0; i < MAX_BOMBS; i++)
         {
-            for (uint8_t i = 0; i < MAX_BOMBS; i++)
+            if (bombs[i].isActive == false)
             {
-                if (bombs[i].isActive == false)
-                {
-                    bombs[i].create(ship.getPositionX());
-                    ship.shot();
-                    break;
-                }
+                bombs[i].create(ship.getPositionX());
+                ship.shot();
+                break;
             }
         }
     }

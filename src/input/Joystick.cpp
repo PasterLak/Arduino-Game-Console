@@ -3,29 +3,6 @@
 #define maxAxisValue 700
 #define minAxisValue 300
 
-Joystick::Joystick()
-{
-    pinMode(ledPin, OUTPUT);
-    pinMode(pinX, INPUT);
-    pinMode(pinY, INPUT);
-    pinMode(switchPin, INPUT);
-    digitalWrite(switchPin, HIGH);
-
-    state = 0;
-    lastState = 0;
-
-    stateUp = 0;
-    lastStateUp = 0;
-
-    stateDown = 0;
-    lastStateDown = 0;
-
-    stateRight = 0;
-    lastStateRight = 0;
-
-    stateLeft = 0;
-    lastStateLeft = 0;
-}
 
 void Joystick::update()
 {
@@ -33,18 +10,43 @@ void Joystick::update()
     state = digitalRead(switchPin);
     digitalWrite(ledPin, state);
 
-    x = analogRead(pinX);
-    y = analogRead(pinY);
+    
+
+    x = analogRead(_pinX);
+    y = analogRead(_pinY);
+
+    //Serial.println(String(x) + " : " + String(y));
 
     lastStateDown = stateDown;
     lastStateUp = stateUp;
     lastStateRight = stateRight;
     lastStateLeft = stateLeft;
 
-    stateDown = (y < minAxisValue) ? 1 : 0;
+  if(yAxisMirror)
+  {
+    stateUp = (y  < minAxisValue) ? 1 : 0;
+    stateDown = (y > maxAxisValue) ? 1 : 0;
+
+  }
+  else 
+  {
+    stateDown = (y  < minAxisValue) ? 1 : 0;
     stateUp = (y > maxAxisValue) ? 1 : 0;
+  }
+
+  if(xAxisMirror)
+  {
+    stateRight = (x > maxAxisValue) ? 1 : 0;
+    stateLeft = (x < minAxisValue) ? 1 : 0;
+  }
+  else
+  {
     stateLeft = (x > maxAxisValue) ? 1 : 0;
     stateRight = (x < minAxisValue) ? 1 : 0;
+  }
+  
+
+    
 }
 
 bool Joystick::isPressed()
@@ -52,12 +54,12 @@ bool Joystick::isPressed()
     return state;
 }
 
-bool Joystick::isDown() {
+bool Joystick::isButtonDown() {
     return (lastState == false && state != lastState);
 }
 
 
-bool Joystick::isUp()
+bool Joystick::isButtonUp()
 {
     return (lastState == true && state != lastState);
 }
@@ -80,4 +82,25 @@ bool Joystick::isMovedLeft()
 bool Joystick::isMovedRight()
 {
     return (lastStateRight == false && stateRight != lastStateRight);
+}
+
+
+bool Joystick::isDown() {
+    return (lastStateDown == true && stateDown == lastStateDown);
+}
+
+
+bool Joystick::isUp() {
+    return (lastStateUp == true && stateUp == lastStateUp);
+}
+
+
+bool Joystick::isLeft()
+{
+    return (lastStateLeft == true && stateLeft == lastStateLeft);
+}
+
+bool Joystick::isRight()
+{
+    return (lastStateRight == true && stateRight == lastStateRight);
 }

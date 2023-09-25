@@ -3,20 +3,21 @@
 
 #include <Arduino.h>
 
-static unsigned int deltaTime(0);
+extern uint8_t deltaTime;
 
 static unsigned long oldTime(0);
 
-#pragma GCC diagnostic ignored "-Wunused-function"
+
 static void updateDelta()
 {
 
-    deltaTime = Arduino_h::millis() - oldTime;
+
+    deltaTime = static_cast<uint8_t>(Arduino_h::millis() - oldTime);
     oldTime = Arduino_h::millis();
 
 }
 
-#pragma GCC diagnostic ignored "-Wunused-function"
+
 static unsigned int fps()
 {
     if(deltaTime > 0)
@@ -24,7 +25,6 @@ static unsigned int fps()
     else return 0;
 }
 
-#pragma GCC diagnostic ignored "-Wunused-function"
 static float getSeconds()
 {
    return deltaTime / 1000.0f;
