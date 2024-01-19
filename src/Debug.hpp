@@ -3,10 +3,13 @@
 #include <Arduino.h>
 #include "Game.h"
 #include "Engine.hpp"
+#include <MemoryFree.h>
 
 class Debug : public Game
 {
 private:
+    int mem = 0;
+
 public:
     Debug(String name, String version) : Game(name, version)
     {
@@ -19,6 +22,7 @@ public:
 
     void start() override
     {
+        mem = freeMemory();
     }
     void update() override
     {
@@ -28,7 +32,6 @@ public:
             gameIsStarted = false;
             menuIsOpened = true;
         }
-        
     }
 
     void draw() override final
@@ -38,7 +41,10 @@ public:
         Device::display.drawRect(0, 0, 128, 64, WHITE);
 
         Device::display.setCursor(5, 5);
-        Device::display.println("Joystick: ");
+
+        Device::display.println("Memory: " +
+                                String(mem));
+
         Device::display.setCursor(5, 15);
         Device::display.println("X: " + String(Device::joystick.x) + " Y: " + String(Device::joystick.y));
 
@@ -46,7 +52,7 @@ public:
         Device::display.println("FrameTime: " + String(deltaTime) + " ms.");
 
         Device::display.setCursor(5, 35);
-        Device::display.println("Fps: " + String(1000/deltaTime));
+        Device::display.println("Fps: " + String(1000 / deltaTime));
         Device::display.setCursor(5, 45);
         Device::display.println("Screen: " + String(Device::display.width()) + "/" + String(Device::display.height()));
 
