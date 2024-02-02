@@ -1,10 +1,6 @@
 #include "Vector2Byte.h"
 #include <array>
 
-Vector2Byte::Vector2Byte()
-{
-    zero();
-}
 
 Vector2Byte::Vector2Byte(const Vector2Byte& v)
 {
@@ -90,7 +86,6 @@ Vector2Byte& Vector2Byte::operator=( Vector2Byte&& v1)
     std::swap(v1.y, this->y);
     return *this;
 }
-
 
 Vector2Byte operator+(const Vector2Byte v1, const Vector2Byte v2)
 {

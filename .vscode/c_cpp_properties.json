@@ -10,6 +10,7 @@
             "includePath": [
                 "/Users/vladis/Projects/Arduino-Game-Console/include",
                 "/Users/vladis/Projects/Arduino-Game-Console/src",
+                "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/MemoryFree",
                 "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/Adafruit SSD1306",
                 "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/Adafruit GFX Library",
                 "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/Adafruit BusIO",
@@ -43,6 +44,7 @@
                 "path": [
                     "/Users/vladis/Projects/Arduino-Game-Console/include",
                     "/Users/vladis/Projects/Arduino-Game-Console/src",
+                    "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/MemoryFree",
                     "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/Adafruit SSD1306",
                     "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/Adafruit GFX Library",
                     "/Users/vladis/Projects/Arduino-Game-Console/.pio/libdeps/seeed_xiao/Adafruit BusIO",
@@ -73,7 +75,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=60111",
+                "PLATFORMIO=60113",
                 "ARDUINO_SAMD_ZERO",
                 "__SAMD21__",
                 "__SAMD21G18A__",

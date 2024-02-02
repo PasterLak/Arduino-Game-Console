@@ -93,5 +93,5 @@ public:
         menuIsOpened = false;
         games[gameID]->awake();
         games[gameID]->start();
-    }
+    };
 };

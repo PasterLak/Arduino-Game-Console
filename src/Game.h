@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <Arduino.h>
@@ -20,7 +19,7 @@ public:
     {
         this->name = name;
         this->version = version;
-    }
+    };
     Game() = default;
     ~Game() = default;
 

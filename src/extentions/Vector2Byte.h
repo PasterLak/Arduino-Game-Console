@@ -9,13 +9,12 @@ public:
     uint8_t x = 0;
     uint8_t y = 0;
 
-    Vector2Byte();
+    Vector2Byte(){zero();};
     ~Vector2Byte() = default;
     Vector2Byte(const Vector2Byte& v);
     Vector2Byte( Vector2Byte&& v);
     Vector2Byte(uint8_t x, uint8_t y);
     
-
     void zero();
     void one();
     void up();

@@ -30,7 +30,7 @@ void Event<Args...>::operator-=(void (*handler)(Args...))
 template <typename... Args>
 void Event<Args...>::invoke(Args... args) 
 {
-    for (auto handler : handlers) 
+    for (const auto & handler : handlers) 
     {
         handler(args...);
     }
