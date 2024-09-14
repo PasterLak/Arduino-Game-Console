@@ -3,12 +3,12 @@
 #include <Arduino.h>
 #include "Game.h"
 #include "Engine.hpp"
-#include <MemoryFree.h>
+
 
 class Debug : public Game
 {
 private:
-    int mem = 0;
+ 
 
 public:
     Debug(String name, String version) : Game(name, version)
@@ -22,7 +22,7 @@ public:
 
     void start() override
     {
-        mem = freeMemory();
+        
     }
     void update() override
     {
@@ -42,8 +42,7 @@ public:
 
         Device::display.setCursor(5, 5);
 
-        Device::display.println("Memory: " +
-                                String(mem));
+        Device::display.println("Memory: 32Kb"  );
 
         Device::display.setCursor(5, 15);
         Device::display.println("X: " + String(Device::joystick.x) + " Y: " + String(Device::joystick.y));
